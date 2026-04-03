@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c55obg4uwy0i1"]
+
+[ext_resource type="Texture2D" uid="uid://c4jshsat3mni7" path="res://assets/props/textures/floor_tiles/tiles_0128_ao_1k.jpg" id="2_g256i"]
+[ext_resource type="Texture2D" uid="uid://cjxdy6k7s3sa7" path="res://assets/props/textures/floor_tiles/tiles_0128_normal_opengl_1k.png" id="3_5e5ql"]
+[ext_resource type="Texture2D" uid="uid://dciwwy6nm1i6r" path="res://assets/props/textures/floor_tiles/tiles_0128_roughness_1k.jpg" id="4_exhbk"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3gnff"]
+load_path = "res://.godot/imported/tiles_0128_color_1k.jpg-8a2ea1911232d77fc53bbfe730c98b8e.s3tc.ctex"
+
+[resource]
+albedo_texture = SubResource("CompressedTexture2D_3gnff")
+metallic_specular = 0.0
+roughness_texture = ExtResource("4_exhbk")
+normal_enabled = true
+normal_texture = ExtResource("3_5e5ql")
+ao_enabled = true
+ao_texture = ExtResource("2_g256i")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true

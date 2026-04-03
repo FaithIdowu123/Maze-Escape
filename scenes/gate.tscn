@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bm3i8dp1i63y5"]
+
+[ext_resource type="PackedScene" uid="uid://dysvsqi5p858v" path="res://assets/props/gold_lock_improved.glb" id="1_xfvdi"]
+
+[sub_resource type="Animation" id="Animation_xfvdi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_Scene:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xwxio"]
+resource_name = "default"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_Scene:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hudsw"]
+_data = {
+&"RESET": SubResource("Animation_xfvdi"),
+&"default": SubResource("Animation_xwxio")
+}
+
+[node name="Gate" type="Node3D" unique_id=220230954]
+
+[node name="Sketchfab_Scene" parent="." unique_id=21436305 instance=ExtResource("1_xfvdi")]
+transform = Transform3D(0.056976654, 0, 0, 0, 0.056976654, 0, 0, 0, 0.056976654, 0, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236660970]
+libraries/ = SubResource("AnimationLibrary_hudsw")
+autoplay = &"default"

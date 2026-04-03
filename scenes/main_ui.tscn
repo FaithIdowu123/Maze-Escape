@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cwu17axoom2vx"]
+
+[ext_resource type="PackedScene" uid="uid://jnknsbjrxp54" path="res://scenes/win_screen.tscn" id="1_e6fyy"]
+[ext_resource type="Script" uid="uid://dmpybnrlwo3np" path="res://scripts/main_ui.gd" id="1_j6a7c"]
+[ext_resource type="PackedScene" uid="uid://bhrlatkhnqojt" path="res://scenes/pause_ui.tscn" id="2_j6a7c"]
+[ext_resource type="PackedScene" uid="uid://cpqt5pkdp06yk" path="res://scenes/game_ui.tscn" id="3_scoti"]
+
+[node name="Main_ui" type="Control" unique_id=1614594550]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j6a7c")
+
+[node name="Win_screen" parent="." unique_id=93756053 instance=ExtResource("1_e6fyy")]
+process_mode = 1
+layout_mode = 1
+
+[node name="Pause_Ui" parent="." unique_id=702001562 instance=ExtResource("2_j6a7c")]
+visible = false
+layout_mode = 1
+
+[node name="Game_Ui" parent="." unique_id=1669302395 instance=ExtResource("3_scoti")]
+process_mode = 1
+layout_mode = 1
