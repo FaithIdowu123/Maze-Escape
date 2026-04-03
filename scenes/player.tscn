@@ -1,30 +1,3 @@
-[gd_scene format=3 uid="uid://lc20ewfwayj5"]
-
-[ext_resource type="Script" uid="uid://mvvhuar2xvq3" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="PackedScene" uid="uid://bwm8pbr3q0dh7" path="res://scenes/camera_controller.tscn" id="2_g2els"]
-[ext_resource type="PackedScene" uid="uid://b2gs222m8eist" path="res://scenes/tim.tscn" id="2_qhqgy"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhqgy"]
-radius = 0.37
-
-[node name="Player" type="CharacterBody3D" unique_id=612128953]
-script = ExtResource("1_3vyb7")
-
-[node name="Tim" parent="." unique_id=76663992 instance=ExtResource("2_qhqgy")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1940839800]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_qhqgy")
-
-[node name="SpringArm3D" parent="." unique_id=1113844260 instance=ExtResource("2_g2els")]
-
-[node name="Dance" type="Timer" parent="." unique_id=578948147]
-wait_time = 17.031000000000002
-one_shot = true
-
-[node name="Idle" type="Timer" parent="." unique_id=691302851]
-wait_time = 3.0
-one_shot = true
-
-[connection signal="timeout" from="Dance" to="." method="_on_dance_timeout"]
-[connection signal="timeout" from="Idle" to="." method="_on_idle_timeout"]
+version https://git-lfs.github.com/spec/v1
+oid sha256:f6b26242642bdfe9fa01d7c411b8e9b56ed01b42e4f818e3219e6771b3c7ce02
+size 1262

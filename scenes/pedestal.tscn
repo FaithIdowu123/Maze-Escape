@@ -1,18 +1,3 @@
-[gd_scene format=3 uid="uid://bbqhtskpm1eea"]
-
-[ext_resource type="PackedScene" uid="uid://bkt0700juahdq" path="res://assets/props/pedestal.glb" id="1_hsd6d"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fhfkq"]
-size = Vector3(10.00824, 11.400396, 9.848694)
-
-[node name="Pedestal" type="Node3D" unique_id=282277465]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1587965235]
-transform = Transform3D(0.18150654, 0, 0, 0, 0.18150654, 0, 0, 0, 0.18150654, 0, 0, 0)
-
-[node name="Sketchfab_Scene" parent="StaticBody3D" unique_id=1936486717 instance=ExtResource("1_hsd6d")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=185910254]
-transform = Transform3D(0.9999793, 0, 0, 0, 0.9999793, 0, 0, 0, 0.9999793, 0.09779766, 6.199121, -0.07338156)
-shape = SubResource("BoxShape3D_fhfkq")
+version https://git-lfs.github.com/spec/v1
+oid sha256:6aec476d3147e87fa3edb6e4cb2c759d0e919dfb832227f34850369607ca4add
+size 927
