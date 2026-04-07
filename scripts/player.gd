@@ -5,6 +5,7 @@ enum {IDLE,RUN,DANCE}
 @onready var dance_timer: Timer = $Dance
 @onready var idle_timer: Timer = $Idle
 @onready var tim: Node3D = $Tim
+@onready var walk_sound: AudioStreamPlayer3D = $Walk_sound
 
 @export var walk_speed : float = 6.0
 @export var run_speed : float = 8.0
@@ -16,6 +17,10 @@ var interactable :bool = false
 @export var blend_speed : int= 15
 var run_val = 0
 var dance_val = 0
+# Start and end time in seconds
+var start_time = 3.01  # start at 5s
+var end_time = 3.52   # stop at 10s
+var rng = RandomNumberGenerator.new()
 
 func _physics_process(delta: float) -> void:
 	if !win:
@@ -29,11 +34,8 @@ func _physics_process(delta: float) -> void:
 func move(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-	if Input.is_action_pressed("Sprint"):
-		speed = run_speed
-	else:
-		speed = walk_speed
+	
+	speed = walk_speed
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -45,6 +47,8 @@ func move(delta):
 		velocity.z = direction.z * speed
 		var target_rotation = atan2(direction.x, direction.z)
 		$Tim.rotation.y = lerp_angle($Tim.rotation.y, target_rotation, 0.15)
+		if !walk_sound.playing:
+			play_walk()
 	else:
 		tim.curAnim = IDLE
 		velocity.x = move_toward(velocity.x, 0, speed)
@@ -64,3 +68,12 @@ func _on_dance_timeout() -> void:
 
 func _on_idle_timeout() -> void:
 	won()
+
+func play_walk():
+	# Set the audio to the start time
+	walk_sound.pitch_scale = rng.randf_range(0.7,1.3)
+	walk_sound.play(start_time)
+	# Schedule stopping at the end time
+	var duration = end_time - start_time
+	await get_tree().create_timer(duration).timeout
+	walk_sound.stop()

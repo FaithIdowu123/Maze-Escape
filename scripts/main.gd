@@ -10,6 +10,8 @@ extends Node3D
 @onready var goal: Label = $Main_ui/Game_Ui/goal
 @onready var proximity: Label = $Main_ui/Game_Ui/proximity
 @onready var keys: Node3D = $keys
+@onready var lock_sound: AudioStreamPlayer3D = $Lock_sound
+@onready var win_sound: AudioStreamPlayer3D = $Win_sound
 
 @onready var keys_loc = keys.get_children()
 @onready var keys_needed = keys_loc.size()
@@ -19,6 +21,7 @@ var distance: float
 var can_open : bool = false
 var player : Node3D
 var won : bool = false 
+  # stop at 10s
 
 func _ready() -> void:
 	DisplayServer.mouse_set_mode(2)
@@ -38,6 +41,8 @@ func _process(delta: float) -> void:
 
 		# Win condition
 		if Input.is_action_just_pressed("Enter") and can_open and character.keys >= keys_needed:
+			play_unlock()
+			play_win()
 			collision_shape_3d.disabled = true
 			character.interactable = false
 			player.win = true
@@ -93,3 +98,24 @@ func find_proximity():
 		
 func switch_scene(scene):
 	GameManager.switch_scene(scene)
+
+func play_unlock():
+	var start_time = 2.01  # start at 5s
+	var end_time = 2.39
+	# Set the audio to the start time
+	lock_sound.play(start_time)
+	# Schedule stopping at the end time
+	var duration = end_time - start_time
+	await get_tree().create_timer(duration).timeout
+	lock_sound.stop()
+
+	
+func play_win():
+	var start_time = 0.00  # start at 5s
+	var end_time = 1.09
+	# Set the audio to the start time
+	win_sound.play(start_time)
+	# Schedule stopping at the end time
+	var duration = end_time - start_time
+	await get_tree().create_timer(duration).timeout
+	win_sound.stop()

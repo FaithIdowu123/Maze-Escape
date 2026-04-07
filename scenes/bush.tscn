@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1d936f0263570bf5fbfe263f851622fcee3db7d703bb3ad060cdc346cff2d9c1
-size 804
+[gd_scene format=3 uid="uid://c8afkyt1e1eh4"]
+
+[ext_resource type="PackedScene" uid="uid://bqgaat3j8sg5u" path="res://assets/props/bush_in_voxels.glb" id="1_lad4k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ehqem"]
+size = Vector3(3.3973389, 3.2076416, 1.0082703)
+
+[node name="Bush" type="Node3D" unique_id=879316213]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1275678365]
+
+[node name="Sketchfab_Scene" parent="StaticBody3D" unique_id=2085295737 instance=ExtResource("1_lad4k")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=774401612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037902832, 1.611145, -0.047164917)
+shape = SubResource("BoxShape3D_ehqem")

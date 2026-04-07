@@ -1,3 +1,67 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9593be891845a6d86735fa884ab23ef2f8f2a20cbe2754c7746efc63b2ef97a4
-size 2457
+[gd_scene format=3 uid="uid://cmgru2cd1pl67"]
+
+[ext_resource type="Script" uid="uid://bqvgnrjl5l323" path="res://scripts/key.gd" id="1_fhfkq"]
+[ext_resource type="PackedScene" uid="uid://cyqa30u3jn6d0" path="res://scenes/key.tscn" id="2_fhfkq"]
+[ext_resource type="PackedScene" uid="uid://bbqhtskpm1eea" path="res://scenes/pedestal.tscn" id="3_fhfkq"]
+[ext_resource type="AudioStream" uid="uid://co5q5q6i1qjwm" path="res://assets/sounds/freesound_community-unlock-the-door-2-99745.mp3" id="4_w4ohy"]
+
+[sub_resource type="Gradient" id="Gradient_fttkb"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wy8tx"]
+gradient = SubResource("Gradient_fttkb")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brs3p"]
+albedo_texture = SubResource("GradientTexture2D_wy8tx")
+metallic_specular = 0.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 15.15
+
+[sub_resource type="SphereMesh" id="SphereMesh_jcln5"]
+material = SubResource("StandardMaterial3D_brs3p")
+radius = 0.001
+height = 0.001
+radial_segments = 4
+rings = 4
+is_hemisphere = true
+
+[sub_resource type="Gradient" id="Gradient_b4qnb"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kkgcr"]
+size = Vector3(4, 3, 4)
+
+[node name="Key_Pedestal" type="Node3D" unique_id=642321579 groups=["Keys"]]
+script = ExtResource("1_fhfkq")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=2018563575]
+transform = Transform3D(1, 0, 2.220446e-16, 0, 0.0061260834, 0.9999812, 0, -0.9999812, 0.0061260834, 0, 2.7356076, 0)
+amount = 12
+mesh = SubResource("SphereMesh_jcln5")
+emission_shape = 2
+emission_sphere_radius = 0.4
+gravity = Vector3(0, 2, 0)
+scale_amount_max = 61.0
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("Gradient_b4qnb")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=496534833]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1047118680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9990001, 0)
+shape = SubResource("BoxShape3D_kkgcr")
+
+[node name="Key" parent="." unique_id=1722424869 instance=ExtResource("2_fhfkq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6335826, 0)
+
+[node name="Pedestal" parent="." unique_id=282277465 instance=ExtResource("3_fhfkq")]
+
+[node name="Key_sound" type="AudioStreamPlayer3D" parent="." unique_id=1834707653]
+stream = ExtResource("4_w4ohy")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
