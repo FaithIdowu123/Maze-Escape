@@ -6,7 +6,7 @@ In the game, the player controls a first-person character to navigate through a 
 
 The purpose of creating this software was to learn how to implement game mechanics, handle user input, design levels, and manage interactive objects in a 3D environment. It also helped me practice debugging, problem-solving, and applying physics-based movement in Godot.  
 
-[Game demonstration](http://youtube.link.goes.here)
+[Game demonstration](https://youtu.be/9qGjvKPQfsA)
 
 # Development Environment
 
